@@ -1,0 +1,17 @@
+<form action='/search'>
+  <button> Back </button>
+</form>
+
+<% @filtered_books.each do |single_book| %>
+<ul>
+
+  <li>
+
+    <a href="/info/<%= single_book['isbn10']%>" ><%= single_book['title'] %></a>
+
+
+  </li>
+  <br>
+</ul>
+
+<%end%>

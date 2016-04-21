@@ -1,0 +1,59 @@
+<!-- Show all the details about the book plus a button to add the book to user_profile -->
+<form action='/list'>
+  <button> Back </button>
+</form>
+
+<a href="<%= request.referrer %>">back</a>
+
+
+
+<div class='top'>
+  <p id='title'> <%= @book_title %> </p>
+  <p 'year'> Year : <%= @book_year %> </p>
+</div>
+
+<div class='container'>
+
+<%= @book_cover %>
+
+<div class='sidebar'>
+  <ul>
+
+  <li> <b>Number of pages :</b>  <%= @book_page_count %> </li>
+
+  <li> <b>Category :</b> <%= @book_category %> </li>
+
+ </ul>
+
+ <% @favourites.each do |favourite|%>
+ <p> <%= favourite  %> </p>
+ <% end %>
+
+ <form action="/info/<%= @book_isbn %>" method="post">
+   <input type="hidden" name="isbn">
+   <button> Like </button>
+ </form>
+
+
+
+<% @reviews.each do |review| %>
+<p><%= review.body %></p>
+<% end %>
+
+<form action="/info/<%= @book_isbn %>" method="post">
+  <input type="hidden" value="delete" name="_method">
+  <button>delete</button>
+</form>
+
+
+<form action="/info" method="post">
+  <input type="hidden" name="book_id" value="<%= @book_id %>">
+  <textarea name='body'>
+  </textarea>
+
+  <button>post</button>
+</form>
+
+
+
+ </div>

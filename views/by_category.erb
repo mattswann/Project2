@@ -1,0 +1,9 @@
+<form action='/search'>
+  <button> Back </button>
+</form>
+
+<% @my_books.each do |book|%>
+
+<a href='/info?book=<%= book['id']%>'><%= book['title'] %></a><br>
+
+<% end %>

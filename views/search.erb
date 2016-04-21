@@ -1,0 +1,14 @@
+<!-- A list of probably categories , authors and titles of books to choose from  -->
+
+<h2>Search by category:</h2>
+
+<% @categories.each do |category| %>
+
+<a href="/by_category/<%= category.id %>"> <%= category.name.capitalize %> </a><br>
+<% end %>
+
+<h2>Search by Title:</h2>
+<form action='/list'>
+<label for=''></label>
+<input type='text' name='book' placeholder="Search for a book">
+<button>Search</button>
