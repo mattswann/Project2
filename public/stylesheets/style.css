@@ -225,10 +225,10 @@ a.list {
 }
 div.list{
   margin: 100px 350px;
-  background-image:url("/stylesheets/backg2.jpg");
+  /*background-image:url("/stylesheets/backg2.jpg");*/
+  background-color: white;
   border: 1px solid black;
   border-radius: 20px;
-
   padding: 30px;
   text-align: center;
 
@@ -262,7 +262,7 @@ li.list_by_title a {
 
 }
 div.list_by_title{
-  background-image:url("/stylesheets/backg2.jpg");
+  background-color: white;
   border: 2px solid black;
   margin: 100px 350px;
   text-align: center;
@@ -285,7 +285,7 @@ div.info{
   font-size: 24px;
   /*background-color: #5B5B5B;*/
   color: black;
-  background-image:url("/stylesheets/backg2.jpg");
+  background-color: white;
   height: 420px;
   text-align: center;
   margin: 50px 370px;
