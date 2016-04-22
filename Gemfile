@@ -6,4 +6,4 @@ gem 'pg'
 gem 'sinatra-activerecord'
 gem 'httparty', '~> 0.13.7'
 
-# never include pry in here
+
