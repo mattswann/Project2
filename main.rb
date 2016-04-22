@@ -60,7 +60,8 @@ post '/user/signup' do
 end
 
 get '/session/login' do
-  erb :login
+
+  erb :bam_login
 end
 
 post '/session' do
