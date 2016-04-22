@@ -1,5 +1,5 @@
+
 require 'sinatra'
-require 'sinatra/reloader'
 require 'pg'
 require 'httparty'
 # require 'google_books'
@@ -199,6 +199,7 @@ get '/info/:isbn' do
 end
   @reviews = book.reviews
   @favourites = book.favourites
+
   erb :info
 end
 
@@ -227,6 +228,23 @@ post '/like/:isbn' do
   redirect to "/info/#{ params[:isbn] }"
  # end
 end
+#
+# get '/info/:id/edit' do
+#   @book = Book.find_by(isbn: params[:isbn])
+#   @books = Book.all
+#   erb :edit
+# end
+#
+# patch '/info' do
+#   book = params[:isbn])
+#   binding.pry
+#   # book.title = params[:title]
+#   # book.page_count = params[:number_pages]
+#   # book.category = params[:category]
+#   # book.save
+#   redirect to "/info/#{ params[:isbn] }"
+# end
+#
 
 
 get '/sorry' do

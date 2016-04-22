@@ -225,7 +225,6 @@ a.list {
 }
 div.list{
   margin: 100px 350px;
-  /*background-image:url("/stylesheets/backg2.jpg");*/
   background-color: white;
   border: 1px solid black;
   border-radius: 20px;
@@ -277,18 +276,14 @@ h2.not_available {
 }
 
 div.info{
-  margin-left: 200px;
-  font-size: 18px;
-  margin-left: 300px;
   font-family: 'Varela Round', sans-serif;
-  margin-top: 70px;
   font-size: 24px;
-  /*background-color: #5B5B5B;*/
   color: black;
   background-color: white;
-  height: 420px;
+  height: 700px;
+  width: 750px;
   text-align: center;
-  margin: 50px 370px;
+  margin: 50px 250px;
   font-size: 20px;
   padding: 10px;
   border: 2px solid black;
@@ -314,12 +309,11 @@ div.sidebar b {
   margin-left: 30px;
 
 }
-.top {
-  margin-left: 200px;
-  font-size: 28px;
-}
+
 
 #title {
+  font-size: 28px;
+  margin-left: 200px;
   font-size: 28px;
 }
 
@@ -328,15 +322,14 @@ height: 70px;
 width: 300px;
 font-size: 18px;
 color: grey;
+margin-top: 80px;
 }
 div.comment button{
   height: 40px;
   width: 80px;
-  border-radius: 8px;
   background-color: white;
   color: black;
-  padding-left: 11px;
-  padding-top: 7px;
+  text-align: center;
   margin-top: 10px;
   margin-right: 30px;
   border:3px solid #70C6A6;
@@ -344,21 +337,39 @@ div.comment button{
 }
 div.comment p {
   padding-bottom: 10px;
+  font-size: 14px;
+  color: gray;
 }
 div.sidebar button {
-  height: 40px;
-  width: 80px;
-  border-radius: 8px;
+  height: 30px;
+  width: 60px;
   background-color: white;
   color: black;
-  padding-left: 11px;
-  padding-top: 7px;
+  text-align: center;
   margin-top: 10px;
   margin-right: 30px;
   border:3px solid #70C6A6;
-  font-size: 16px;
+  font-size: 10px;
   margin-left: 320px;
 }
 div.sidebar p {
   margin-left: 100px
+}
+
+div.edit {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 24px;
+  color: black;
+  background-color: white;
+  height: 700px;
+  width: 750px;
+  text-align: center;
+  margin: 50px 250px;
+  font-size: 20px;
+  padding: 10px;
+  border: 2px solid black;
+  padding-bottom: 40px;
+  padding-top: 30px;
+  border-radius: 20px
+
 }

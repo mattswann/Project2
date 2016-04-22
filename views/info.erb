@@ -1,20 +1,21 @@
 <!-- Show all the details about the book plus a button to add the book to user_profile -->
 
-  <a href="<%= request.referrer %>" class='back'>back</a>
+<a href="<%= request.referrer %>" class='back'>back</a>
 
 
 
   <div class='info'>
 
-    <div class='top'>
+
       <p id='title'><b> <%= @book_title %> </b></p>
-    </div>
+
 
     <div class='container'>
 
-      <img src="http://www.royalvictoria57.com/Images/masonic_encyclopedia_cover.jpg">
+      <img src="http://thumb7.shutterstock.com/display_pic_with_logo/176509/176509,1202926299,1/stock-photo-vintage-bookcover-with-beautiful-floral-decoration-and-blank-label-for-your-text-9412654.jpg">
 
       <div class='sidebar'>
+
         <ul>
           <li> Year : <%= @book_year %> </li>
         <li> Number of pages :   <%= @book_page_count %> </li>
@@ -33,13 +34,14 @@
 
 
         <div class='comment'>
+
           <% @reviews.each do |review| %>
-          <p><%= review.body %></p>
+          <p> comment : <%= review.body %></p>
           <% end %>
 
           <form action="/info/<%= @book_isbn %>" method="post">
             <input type="hidden" value="delete" name="_method">
-            <button>delete</button>
+            <button>Delete</button>
           </form>
 
 
@@ -47,8 +49,10 @@
             <input type="hidden" name="book_id" value="<%= @book_id %>">
             <textarea name='body'>
             </textarea>
-            <button>post</button>
+            <button>Post</button>
           </form>
+
+          <!-- <a href="/info/<%= @book_isbn %>/edit">Edit Book</a> -->
         </div>
 
       </div>
