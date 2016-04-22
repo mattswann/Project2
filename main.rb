@@ -56,7 +56,7 @@ post '/user/signup' do
     "Sorry"
   end
 
-  erb :signUp
+  erb :bam_signup
 end
 
 get '/session/login' do
