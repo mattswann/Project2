@@ -2,7 +2,7 @@ CREATE DATABASE bookshelf;
 
 \c bookshelf
 
-CREATE TABLE my_books(
+CREATE TABLE books(
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(300),
   author VARCHAR(300),
@@ -31,11 +31,6 @@ INSERT INTO categories (name) VALUES ('non-fiction');
 INSERT INTO categories (name) VALUES ('romance');
 INSERT INTO categories (name) VALUES ('science');
 
-CREATE TABLE authors(
-  id SERIAL4 PRIMARY KEY,
-  first_name VARCHAR(50),
-  last_name VARCHAR(50)
-);
 
 CREATE TABLE reviews(
   id SERIAL4 PRIMARY KEY,

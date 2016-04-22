@@ -6,34 +6,35 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kindle BookShelf</title>
   <link rel='stylesheet' href='/stylesheets/style.css'>
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
-<div class='index'>
-
+  <header>
   <% if logged_in? %>
-
- <%= current_user.email %>
-
-
-    <form action='/session' method='post'>
-    <input type='hidden' value='delete' name='_method'>
-    <button>Log out </button>
-    </form>
+      <div class='logout'>
+      <span>Hello, <%= current_user.first_name %> </span>
+          <form action='/session' method='post'>
+          <input type='hidden' value='delete' name='_method'>
+          <button>Log out </button>
+          </form>
+      </div>
 
   <% else %>
-  <ul id='menu'>
+
+  <ul class='menu'>
     <li>
       <a href='/session/login'>Login</a>
     </li>
 
-  <li>
-   <a href='/user/signup'> SignUp</a>
-  </li>
-</ul>
+    <li>
+      <a href='/user/signup'> SignUp</a>
+    </li>
+  </ul>
 
   <% end %>
+</header>
+
   <%= yield %>
-</div>
+
 
 </body>

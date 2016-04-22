@@ -1,9 +1,11 @@
-<form action='/search'>
-  <button> Back </button>
-</form>
 
+
+<a href="<%= request.referrer %>" class='back'>back</a>
+
+<div class='list'>
 <% @my_books.each do |book|%>
-
-<a href='/info?book=<%= book['id']%>'><%= book['title'] %></a><br>
+<a href='/info?book=<%= book['id']%>' class='list'><%= book['title'] %></a><br>
 
 <% end %>
+
+</div>

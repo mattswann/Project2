@@ -1,17 +1,18 @@
-<form action='/search'>
-  <button> Back </button>
-</form>
 
+<a href="<%= request.referrer %>" class='back'>back</a>
+
+<div class='list_by_title'>
 <% @filtered_books.each do |single_book| %>
-<ul>
 
-  <li>
+<ul>
+  <li class='list_by_title'>
 
     <a href="/info/<%= single_book['isbn10']%>" ><%= single_book['title'] %></a>
 
 
   </li>
-  <br>
+
 </ul>
 
 <%end%>
+</div>

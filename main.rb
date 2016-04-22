@@ -1,4 +1,3 @@
-require 'pry'
 require 'sinatra'
 require 'sinatra/reloader'
 require 'pg'
@@ -109,7 +108,7 @@ get '/list' do
   books.each do |book|
     found = false
   @filtered_books.each do |filtered|
-    if book["title"] == filtered["title"]
+    if book["book_id"] == filtered["book_id"]
       found = true
     end
   end
@@ -140,6 +139,8 @@ get '/info/:isbn' do
   @infos = HTTParty.get("http://openlibrary.org/api/books?bibkeys=ISBN:#{params[:isbn]}&jscmd=data&format=json")
   @data = @infos["ISBN:#{params[:isbn]}"]
 
+
+
   categories = Category.pluck(:name)
     if @infos.empty?
       redirect to '/sorry'
@@ -162,10 +163,11 @@ get '/info/:isbn' do
         @book_page_count = "Numb pages not available"
       end
 
-      if @data['cover']["large"]
-        @book_cover = @data['cover']["large"]
-        @book_cover = "Cover not available"
-      end
+      # if @data['cover']["large"]
+      #   @book_cover = @data['cover']["large"]
+      # else
+      #   @book_cover = "Cover not available"
+      # end
       if @data['subjects']
         @arr = @data['subjects'].map {|s| s['name'].downcase } & categories
         @book_category = @arr.first
@@ -200,7 +202,7 @@ end
   erb :info
 end
 
-post '/info' do
+post '/info/:isbn' do
   review = Review.new
   review.body = params[:body]
   review.book_id = params[:book_id]
@@ -214,14 +216,18 @@ delete '/info/:isbn' do
   redirect to "/info/#{ review.book.isbn }"
 end
 
-post '/info/:isbn' do
+post '/like/:isbn' do
+  # if favourite = Favourite.where(book_id: params[:book_id] , user_id: params[:user_id])
+  #    redirect to "/info/#{ params[:isbn] }"
+  # else
   favourite = Favourite.new
   favourite.book_id = params[:book_id]
   favourite.user_id = current_user.id
   favourite.save
-  redirect to "/info/#{ params[:book_isbn] }"
-
+  redirect to "/info/#{ params[:isbn] }"
+ # end
 end
+
 
 get '/sorry' do
   erb :not_available
