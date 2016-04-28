@@ -2,7 +2,6 @@
 require 'sinatra'
 require 'pg'
 require 'httparty'
-# require 'google_books'
 
 require './db_config'
 require './models/book'
@@ -25,11 +24,6 @@ helpers do
 
   def logged_in?
     !!current_user
-        # if current_user
-        #   return true
-        # else
-        #   return false
-        # end
   end
 
 end
@@ -38,7 +32,7 @@ get '/' do
   erb :index
 end
 get '/user/signup' do
-  erb :signup
+  erb :bam_signup
 end
 
 post '/user/signup' do
@@ -51,7 +45,7 @@ post '/user/signup' do
   user.save
 
   if user.save
-    redirect to '/account'
+    redirect to '/'
   else
     "Sorry"
   end
@@ -93,8 +87,8 @@ get '/search' do
 end
 
 
-get '/by_category/:id' do
- category = Category.find(params[:id])
+get '/by_category/:isbn' do
+ category = Category.find(params[:isbn])
  @my_books = Book.where(category: category['name'])
   erb :by_category
 end
@@ -102,8 +96,8 @@ end
 
 get '/list' do
   @more = HTTParty.get("http://isbndb.com/api/v2/xml/POV7SEJN/books?q=#{params[:book]}")
-
   books = @more["isbndb"]["data"]
+
   @filtered_books = Array.new
 
   books.each do |book|
@@ -144,7 +138,7 @@ get '/info/:isbn' do
 
   categories = Category.pluck(:name)
     if @infos.empty?
-      redirect to '/sorry'
+      redirect to '/search'
     else
   @infos.each do |isbn|
 
@@ -175,13 +169,7 @@ get '/info/:isbn' do
       else
         @book_category = "Category not available"
       end
-        if @data['cover']
-        @book_cover = @data['cover']
-        else
-         @book_cover = "No image provided"
-        end
 
-    #
     book = Book.new
     book.title = @book_title
     book.author = @book_author
@@ -193,7 +181,7 @@ get '/info/:isbn' do
     book.save
 
     @book_id = book.id
-  #
+
   end
 
  end
@@ -219,7 +207,7 @@ delete '/info/:isbn' do
 end
 
 post '/like/:isbn' do
-  # if favourite = Favourite.where(book_id: params[:book_id] , user_id: params[:user_id])
+  # if favourite = Favourite.where(book_id: params[:book_id] & user_id: params[:user_id])
   #    redirect to "/info/#{ params[:isbn] }"
   # else
   favourite = Favourite.new
@@ -229,30 +217,32 @@ post '/like/:isbn' do
   redirect to "/info/#{ params[:isbn] }"
  # end
 end
-#
-# get '/info/:id/edit' do
-#   @book = Book.find_by(isbn: params[:isbn])
-#   @books = Book.all
-#   erb :edit
-# end
-#
-# patch '/info' do
-#   book = params[:isbn])
-#   binding.pry
-#   # book.title = params[:title]
-#   # book.page_count = params[:number_pages]
-#   # book.category = params[:category]
-#   # book.save
-#   redirect to "/info/#{ params[:isbn] }"
-# end
-#
 
-
-get '/sorry' do
-  erb :not_available
+delete '/like/:isbn' do
+  favourite = Favourite.find_by(params[:book_isbn])
+  favourite.delete
+  redirect to "/info/#{ params[:isbn] }"
 end
 
-get '/account' do
- @user = current_user
-  erb :user_profile
+get '/info/:isbn/edit' do
+   @book = Book.find_by(isbn: params[:isbn])
+  erb :edit
 end
+
+patch '/info/:isbn' do
+  book = Book.find_by(isbn: params[:isbn])
+  book.title = params[:title]
+  book.page_count = params[:number_pages]
+  book.category = params[:category]
+  book.save
+  redirect to "/info/#{ params[:isbn] }"
+end
+
+# get '/sorry' do
+#   erb :not_available
+# end
+#
+# get '/account' do
+#  @user = current_user
+#   erb :user_profile
+# end

@@ -1,17 +1,15 @@
 <div class='edit'>
 
-  <form action="/info" method="post">
-
+  <form action="/info/<%= @book.isbn %>" method="post">
     <input type="hidden" value="patch" name="_method">
-    <input type='hidden' value='<%= @book_isbn %>' name='isbn'>
     <label for="">Title</label>
-    <input type="text" name="title" value="<%= @book_title %>">
+    <input type="text" name="title" value="<%= @book.title %>">
 
     <label for="">Category</label>
-    <input type="text" name="category" value="<%= @book_category %>">
+    <input type="text" name="category" value="<%= @book.category %>">
 
     <label for=''> Name of pages </label>
-    <input type='text' name='number_pages' value="<% @book_page_count %>">
+    <input type='text' name='number_pages' value="<%= @book.page_count %>">
 
     <button>Insert Details</button>
   </form>

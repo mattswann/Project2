@@ -2,29 +2,17 @@
 
 <a href="<%= request.referrer %>" class='back'>back</a>
 
-
-
   <div class='info'>
-
-
       <p id='title'><b> <%= @book_title %> </b></p>
-
-
     <div class='container'>
-
       <img src="http://thumb7.shutterstock.com/display_pic_with_logo/176509/176509,1202926299,1/stock-photo-vintage-bookcover-with-beautiful-floral-decoration-and-blank-label-for-your-text-9412654.jpg">
-
       <div class='sidebar'>
-
         <ul>
           <li> Year : <%= @book_year %> </li>
-        <li> Number of pages :   <%= @book_page_count %> </li>
-        <li> Category :  <%= @book_category %> </li>
+          <li> Number of pages :   <%= @book_page_count %> </li>
+          <li> Category :  <%= @book_category %> </li>
         </ul>
-
         <p><%= @favourites.length %> Likes </p>
-
-
 
         <form action="/like/<%= @book_isbn %>" method="post">
           <input type="hidden" name="isbn" value="<%= @book_isbn %>">
@@ -32,18 +20,20 @@
           <button> Like </button>
         </form>
 
+        <form action="/like/<%= @book_isbn %>" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <button>Unlike</button>
+        </form>
 
         <div class='comment'>
-
           <% @reviews.each do |review| %>
-          <p> comment : <%= review.body %></p>
+          <p> review : <%= review.body %></p>
           <% end %>
 
           <form action="/info/<%= @book_isbn %>" method="post">
             <input type="hidden" value="delete" name="_method">
             <button>Delete</button>
           </form>
-
 
           <form action="/info/<%= @book_isbn %>" method="post">
             <input type="hidden" name="book_id" value="<%= @book_id %>">
@@ -52,7 +42,7 @@
             <button>Post</button>
           </form>
 
-          <!-- <a href="/info/<%= @book_isbn %>/edit">Edit Book</a> -->
+          <a href="/info/<%= @book_isbn %>/edit">Edit Book</a>
         </div>
 
       </div>
