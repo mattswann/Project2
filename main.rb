@@ -11,7 +11,6 @@ require './models/review'
 require './models/favourite'
 
 after do
-  ActiveRecord::Base.connection.close
 end
 
 enable :sessions
@@ -218,9 +217,12 @@ post '/like/:isbn' do
  # end
 end
 
-delete '/like/:isbn' do
+delete '/like/:id' do
   favourite = Favourite.find_by(params[:book_isbn])
+  favourite.user_id = current_user.id
+  favourite.book_id = params[:book_id]
   favourite.delete
+  favourite.save
   redirect to "/info/#{ params[:isbn] }"
 end
 

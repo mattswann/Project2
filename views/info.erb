@@ -22,6 +22,7 @@
 
         <form action="/like/<%= @book_isbn %>" method="post">
           <input type="hidden" value="delete" name="_method">
+          <input type="hidden" name="book_id" value="<%= @book_id %>">
           <button>Unlike</button>
         </form>
 
