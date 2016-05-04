@@ -15,7 +15,7 @@ end
 
 enable :sessions
 
-helpers do
+helpers do # you could move these helpers somewhere else
 
   def current_user
     User.find_by(id: session[:user_id])
