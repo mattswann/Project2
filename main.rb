@@ -115,7 +115,7 @@ get '/list' do
    erb :list
  end
 
-
+# because this is such a complex request it would be good to add in some comments to explain what's going on.
 get '/info/:isbn' do
 
   if book = Book.find_by(isbn: params[:isbn])
